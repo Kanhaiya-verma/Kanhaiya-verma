@@ -1,0 +1,23 @@
+.content {
+  height: 420px;
+  width: 320px;
+  padding-bottom: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.description {
+  overflow: hidden;
+  height: 80px;
+}
+.image {
+  height: 200px;
+  width: 180px;
+}
+
+.navbarStyle {
+  box-shadow: 2px 2px 4px #333;
+}
+.title {
+  overflow: hidden;
+  height: 30px;
+}
