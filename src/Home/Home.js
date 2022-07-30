@@ -1,16 +1,96 @@
-import React from "react";
 import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 import "./Home.css";
-const Home = ({ post }) => {
+import Filter from "./Filter";
+const Home = ({ post, filter, setFilter, setPost }) => {
+  // const [updated, setUpdated] = useState("All Items");
+
+  // const updatedList = post.filter((product) => {
+  //   if (updated === "men's clothing") {
+  //     return product.category === true;
+  //   }
+  // });
+
+  // const updatedList = post.filter((filterData) => {
+  //   if (updated === "men's clothing") {
+  //     return filterData.category === true;
+  //   }
+  // });
+  // setUpdated(updatedList);
+
+  const filterProduct = (cat) => {
+    const updateList = post.filter((filteredData) => {
+      return filteredData.category === cat;
+    });
+    setFilter(updateList);
+  };
+
+  const filterProductSelected = (product) => {
+    if (product === "All Items") {
+      setFilter(post);
+    } else {
+      const updateList = post.filter((filteredData) => {
+        return filteredData.category === product;
+      });
+      setFilter(updateList);
+    }
+  };
+
   return (
     <div>
       <Navbar />
-      <div className="h1 mt-3 text-center">Latest Product</div>
-      <hr />
+      <Filter filterProductSelected={filterProductSelected} />
+
+      <div className="container mr-1 mt-2">
+        <button
+          type="button"
+          className="btn btn-outline-dark mr-2 "
+          onClick={() => setFilter(post)}
+        >
+          All Items
+        </button>
+        <button
+          type="button"
+          className="btn btn-outline-dark mr-2"
+          onClick={() => {
+            filterProduct("men's clothing");
+          }}
+        >
+          men's clothing
+        </button>
+
+        <button
+          type="button"
+          className="btn btn-outline-dark mr-2"
+          onClick={() => {
+            filterProduct("jewelery");
+          }}
+        >
+          jewelery
+        </button>
+        <button
+          type="button"
+          className="btn btn-outline-dark mr-2"
+          onClick={() => {
+            filterProduct("electronics");
+          }}
+        >
+          electronics
+        </button>
+        <button
+          type="button"
+          className="btn btn-outline-dark mr-2"
+          onClick={() => {
+            filterProduct("women's clothing");
+          }}
+        >
+          women's clothing
+        </button>
+      </div>
+
       <div className="container">
         <div className="row">
-          {post.map((newPost, id) => {
+          {filter.map((newPost, id) => {
             return (
               <div className="col-md-4 mt-2" key={id}>
                 <div className="card content">

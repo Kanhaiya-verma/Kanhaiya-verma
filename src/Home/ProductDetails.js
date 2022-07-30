@@ -3,10 +3,18 @@ import { useParams } from "react-router-dom";
 import Navbar from "./Navbar";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../Redux/cartSlice";
+
 const ProductDetails = () => {
   // console.log(post);
   const params = useParams();
   const [details, setDetails] = useState([]);
+  const dispatch = useDispatch();
+
+  const handleAddtoCart = (details) => {
+    dispatch(addToCart(details));
+  };
 
   useEffect(() => {
     axios
@@ -24,7 +32,7 @@ const ProductDetails = () => {
   const ShowProduct = () => {
     return (
       <>
-        <div className="col-md-6 ">
+        <div className="col-md-6 border border-outline-dark">
           <img
             src={details.image}
             alt={details.title}
@@ -40,7 +48,12 @@ const ProductDetails = () => {
           </p>
           <h1 className="display-6 font-weight-bold m-4">$ {details.price}</h1>
           <p className="lead">{details.description}</p>
-          <button className="btn btn-outline-dark mr-2">Add to Cart</button>
+          <button
+            className="btn btn-outline-dark mr-2"
+            onClick={() => handleAddtoCart(details)}
+          >
+            Add to Cart
+          </button>
           <Link to="/Cart" className="btn btn-outline-dark">
             Go to Cart
           </Link>
