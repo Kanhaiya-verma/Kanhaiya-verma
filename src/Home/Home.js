@@ -3,21 +3,6 @@ import { Link } from "react-router-dom";
 import "./Home.css";
 import Filter from "./Filter";
 const Home = ({ post, filter, setFilter, setPost }) => {
-  // const [updated, setUpdated] = useState("All Items");
-
-  // const updatedList = post.filter((product) => {
-  //   if (updated === "men's clothing") {
-  //     return product.category === true;
-  //   }
-  // });
-
-  // const updatedList = post.filter((filterData) => {
-  //   if (updated === "men's clothing") {
-  //     return filterData.category === true;
-  //   }
-  // });
-  // setUpdated(updatedList);
-
   const filterProduct = (cat) => {
     const updateList = post.filter((filteredData) => {
       return filteredData.category === cat;
